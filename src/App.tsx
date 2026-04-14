@@ -18,21 +18,16 @@ export default function App() {
   const [currentWish, setCurrentWish] = useState<(typeof wishesData)[0] | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const onPlay = () => {};
-  const onStop = () => {};
-
   const playRandomWish = () => {
     if (isPlaying && audioRef.current) {
       audioRef.current.pause();
       setIsPlaying(false);
-      onStop();
       return;
     }
 
     const firstWish = wishesData[0];
     setCurrentWish(firstWish);
     setIsPlaying(true);
-    onPlay();
 
     if (audioRef.current) {
       audioRef.current.pause();
@@ -50,19 +45,16 @@ export default function App() {
 
       audio2.onended = () => {
         setIsPlaying(false);
-        onStop();
       };
 
       audio2.play().catch(() => {
         setIsPlaying(false);
-        onStop();
       });
     };
 
     audio1.play().catch((e) => {
       console.error("Audio play failed:", e);
       setIsPlaying(false);
-      onStop();
     });
   };
 
