@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Heart, ChevronRight, Sparkles, Volume2, VolumeX, Gift, Cake, PartyPopper, Camera, ChevronLeft, Play, Headphones } from 'lucide-react';
 
