@@ -320,43 +320,59 @@ const AudioWishes = ({ onPlay, onStop }: { onPlay: () => void; onStop: () => voi
       name: "Hai mẹ con 🎙️",
       audioSrc: `${import.meta.env.BASE_URL}gallery/ghiam.m4a`,
       text: "Bấm play để nghe lời chúc sinh nhật gửi riêng đến bố! 🎂"
+    },
+    {
+      name: "Lời chúc thứ 2 🎙️",
+      audioSrc: `${import.meta.env.BASE_URL}gallery/ghiam1.m4a`,
+      text: "Và đây là lời nhắn tiếp theo cho bố nè! 🎁"
     }
   ];
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentWish, setCurrentWish] = useState<typeof wishesData[0] | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const currentAudioIndex = useRef<number>(0);
 
-  const playRandomWish = () => {
+  const playWishes = () => {
     if (isPlaying && audioRef.current) {
       audioRef.current.pause();
       setIsPlaying(false);
+      setCurrentWish(null);
       onStop(); // tiếp tục nhạc nền
       return;
     }
 
-    const randomWish = wishesData[Math.floor(Math.random() * wishesData.length)];
-    setCurrentWish(randomWish);
     setIsPlaying(true);
     onPlay(); // tắt nhạc nền
+    currentAudioIndex.current = 0;
 
-    if (audioRef.current) {
-      audioRef.current.pause();
-    }
+    const playNext = () => {
+      if (currentAudioIndex.current >= wishesData.length) {
+        setIsPlaying(false);
+        setCurrentWish(null);
+        onStop(); // tiếp tục nhạc nền khi nghe xong toàn bộ
+        return;
+      }
 
-    const newAudio = new Audio(randomWish.audioSrc);
-    audioRef.current = newAudio;
+      const wish = wishesData[currentAudioIndex.current];
+      setCurrentWish(wish);
+      
+      const newAudio = new Audio(wish.audioSrc);
+      audioRef.current = newAudio;
 
-    newAudio.onended = () => {
-      setIsPlaying(false);
-      onStop(); // tiếp tục nhạc nền khi ghi âm kết thúc
+      newAudio.onended = () => {
+        currentAudioIndex.current++;
+        playNext(); // Phát file tiếp theo
+      };
+
+      newAudio.play().catch(e => {
+        console.error("Audio play failed:", e);
+        setIsPlaying(false);
+        onStop();
+      });
     };
 
-    newAudio.play().catch(e => {
-      console.error("Audio play failed:", e);
-      setIsPlaying(false);
-      onStop();
-    });
+    playNext();
   };
 
   useEffect(() => {
@@ -373,7 +389,7 @@ const AudioWishes = ({ onPlay, onStop }: { onPlay: () => void; onStop: () => voi
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        onClick={playRandomWish}
+        onClick={playWishes}
         className={`w-24 h-24 rounded-full flex items-center justify-center shadow-xl transition-colors ${isPlaying ? 'bg-indigo-100 text-indigo-400' : 'bg-indigo-500 text-white'}`}
       >
         {isPlaying ? <Volume2 size={40} className="animate-pulse" /> : <Play size={40} className="ml-2" />}
