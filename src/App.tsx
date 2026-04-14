@@ -819,7 +819,7 @@ export default function App() {
               <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-rose-500 text-white p-4 rounded-full shadow-lg">
                 <PartyPopper size={32} />
               </div>
-              <h3 className="text-2xl font-romantic font-bold text-rose-600 mb-4 mt-4">Lời chúc dành cho em</h3>
+              <h3 className="text-2xl font-romantic font-bold text-rose-600 mb-4 mt-4">Lời chúc dành cho bố</h3>
               <p className="text-xl text-slate-700 leading-relaxed mb-6">
                 {selectedGift}
               </p>
