@@ -224,7 +224,7 @@ const IntroPhotoSlideshow = ({ photos }: { photos: string[] }) => {
     return () => clearInterval(t);
   }, [photos.length]);
   return (
-    <div className="relative w-full h-48 rounded-2xl overflow-hidden shadow-xl border-4 border-white/60 mb-5">
+    <div className="relative w-full h-64 rounded-2xl overflow-hidden shadow-xl border-4 border-white/60 mb-5">
       <AnimatePresence mode="wait">
         <motion.img
           key={current}
@@ -744,11 +744,11 @@ export default function App() {
 
           {currentMessage.type === 'final' && (
             <div className="mb-4">
-              <div className="w-full h-32 rounded-2xl overflow-hidden mb-3 shadow-inner border-4 border-white">
+              <div className="w-full h-72 rounded-2xl overflow-hidden mb-3 shadow-inner border-4 border-white">
                 <img
                   src={`${import.meta.env.BASE_URL}gallery/2.jpg`}
                   alt="Cover"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-[50%_40%] scale-[1.15]"
                 />
               </div>
 
