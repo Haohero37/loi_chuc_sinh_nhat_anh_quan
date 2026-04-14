@@ -23,10 +23,10 @@ const GIFTS = [
 ];
 
 const INTRO_PHOTOS = [
-  `${import.meta.env.BASE_URL}gallery/2.jpg`,
-  `${import.meta.env.BASE_URL}gallery/7.jpg`,
   `${import.meta.env.BASE_URL}gallery/8.jpg`,
+  `${import.meta.env.BASE_URL}gallery/1.jpg`,
   `${import.meta.env.BASE_URL}gallery/9.jpg`,
+  `${import.meta.env.BASE_URL}gallery/10.jpg`,
 ];
 
 const MESSAGES = [
@@ -50,12 +50,12 @@ const MESSAGES = [
     content: "Những kỷ niệm ngọt ngào mà hai mẹ con luôn trân trọng và giữ gìn trong tim.",
     bg: "from-blue-100 to-indigo-100",
     images: [
-      `${import.meta.env.BASE_URL}gallery/1.jpg`,
       `${import.meta.env.BASE_URL}gallery/2.jpg`,
       `${import.meta.env.BASE_URL}gallery/3.jpg`,
       `${import.meta.env.BASE_URL}gallery/4.jpg`,
       `${import.meta.env.BASE_URL}gallery/5.jpg`,
       `${import.meta.env.BASE_URL}gallery/6.jpg`,
+      `${import.meta.env.BASE_URL}gallery/7.jpg`,
     ],
     button: "Xem tiếp điều bất ngờ"
   },
@@ -746,7 +746,7 @@ export default function App() {
             <div className="mb-4">
               <div className="w-full h-32 rounded-2xl overflow-hidden mb-3 shadow-inner border-4 border-white">
                 <img
-                  src={`${import.meta.env.BASE_URL}gallery/9.jpg`}
+                  src={`${import.meta.env.BASE_URL}gallery/2.jpg`}
                   alt="Cover"
                   className="w-full h-full object-cover"
                 />
